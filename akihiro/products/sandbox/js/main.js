@@ -2,10 +2,17 @@
 var cssSelector = anime({
   targets: '.square.anim',
   translateX: {
-      value: '250px',
+      value: function(el,index,total){
+        if(index===0){
+          return '250px';
+        }
+        else{
+          return '-250px';
+        }
+      },
       duration: '1000',
       delay: '0',
-      //easing: 'linear',
+      easing: 'linear',
   },
   translateY: {
       value: '300px',
@@ -19,10 +26,25 @@ var cssSelector = anime({
     delay:'1800'
   },
   scale:{
-    value:'0',
+    value:[2,1,2,1],
     dulation:'1000',
-    delay:'2200'
-  }
+    delay:function(el,index,total,start){
+      console.log("el : " + el);
+      console.log("index : " + index);
+      console.log("total : " + total);
+      return 300;
+    }
+  },
+  direction: 'alternate',
+  loop: true,
+});
+
+var cssSelector2 = anime({
+  targets: '.square2.anim',
+  translateX: '200px',
+  dulation:300,
+  direction: 'alternate',
+  loop: true,
 });
 
 /*document.body.addEventListener( "mousemove", function( e ) {
